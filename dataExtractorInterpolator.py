@@ -1,6 +1,8 @@
 import numpy as np
 from scipy.io import loadmat, savemat
+import os, sys, path
 
+#INPUTS:
 #Domain:
 #solid body kinematics parameters
 dt = 0.0001
@@ -8,24 +10,20 @@ dt = 0.0001
 start_timestep = 78400
 end_timestep = 392735 #235935#
 write_interval = 245
-
-nsnaps = 1 + int((end_timestep - start_timestep)/write_interval)
-
-tspace_k = np.linspace(start_timestep*dt, end_timestep*dt, nsnaps)
-
-k_space = np.linspace(start_timestep, end_timestep, nsnaps, dtype = int )
-
-xck, yck = kinematics(h0, OMEGA, tspace_k)
-
-
+# Bounding box such that atleast 3 vortex couples 
 Xmin = -1.5
 Xmax = 6.5
 Ymin = -2.5
 Ymax = 2.5
 
-snap = 0
 
-filename = "./Re300_k_4_h_0p2_sin/AllinOne" + str(int(start_timestep + (snap)*write_interval )) + ".dat"
+nsnaps = 1 + int((end_timestep - start_timestep)/write_interval)
+tspace_k = np.linspace(start_timestep*dt, end_timestep*dt, nsnaps)
+k_space = np.linspace(start_timestep, end_timestep, nsnaps, dtype = int )
+
+
+snap = 0
+filename = "<path to the folder>/AllinOne" + str(int(start_timestep + (snap)*write_interval )) + ".dat"
 F = np.loadtxt(filename, skiprows = 1)
 
 X = F[:, 0]
@@ -41,7 +39,7 @@ U_tot = []
 V_tot = []
 #P_tot = []
 for snap in range(nsnaps):
-    filename = "./Re300_k_4_h_0p2_sin/AllinOne" + str(int(start_timestep + (snap)*write_interval )) + ".dat"
+    filename = "<path to the folder>/AllinOne" + str(int(start_timestep + (snap)*write_interval )) + ".dat"
     print("Snap Number: "+ str(int(start_timestep + (snap)*write_interval)))
     F = np.loadtxt(filename, skiprows = 1)
     FF = list(F.T)
