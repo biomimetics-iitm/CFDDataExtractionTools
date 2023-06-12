@@ -7,6 +7,7 @@ import os, sys, path
 #solid body kinematics parameters
 dt = 0.0001
 
+# Atleast 10 cycles for periodic case and 20 cycles in the case of aperiodic case
 start_timestep = 78400
 end_timestep = 392735 #235935#
 write_interval = 245
@@ -15,7 +16,6 @@ Xmin = -1.5
 Xmax = 6.5
 Ymin = -2.5
 Ymax = 2.5
-
 
 nsnaps = 1 + int((end_timestep - start_timestep)/write_interval)
 tspace_k = np.linspace(start_timestep*dt, end_timestep*dt, nsnaps)
