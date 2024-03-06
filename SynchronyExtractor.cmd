@@ -10,4 +10,4 @@ cd $PBS_O_WORKDIR
 module load conda
 source activate tf-gpu
 
-/home/sunetra/.conda/envs/tf-gpu/bin/python3 <path to the parent folder folder>dataExtractorInterpolator.py > outputlog.txt
+python3 <path to the parent folder folder>dataExtractorInterpolator.py > outputlog.txt
